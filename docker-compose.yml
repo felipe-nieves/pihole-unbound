@@ -15,6 +15,7 @@ services:
       - "53:53/udp"
       - "80:80/tcp"
       - "5335:5335/udp"
+#      - "1087:22/tcp" #TODO: SSH Daemon for gravity-sync
     environment:
       TZ: 'America/New_York'
       WEBPASSWORD: password

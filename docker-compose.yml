@@ -1,0 +1,27 @@
+version: "3"
+
+volumes:
+  etc_pihole-unbound:
+  etc_pihole_dnsmasq-unbound:
+
+services:
+  pihole:
+    container_name: pihole
+    image: piholeunbound:latest
+    hostname: piholeunbound
+    ports:
+      - "443:443/tcp"
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+      - "5335:5335/udp"
+    environment:
+      TZ: 'America/New_York'
+      WEBPASSWORD: password
+      PIHOLE_DNS_: 127.0.0.1#5335
+      DNSMASQ_LISTENING: single
+      TEMPERATUREUNIT: f
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    restart: unless-stopped 

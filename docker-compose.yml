@@ -17,7 +17,7 @@ services:
       - "5335:5335/udp"
     environment:
       TZ: 'America/New_York'
-      WEBPASSWORD: password
+      WEBPASSWORD: ''
       PIHOLE_DNS_: 127.0.0.1#5335
       DNSMASQ_LISTENING: single
       TEMPERATUREUNIT: f

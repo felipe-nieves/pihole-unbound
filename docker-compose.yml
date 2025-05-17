@@ -18,9 +18,10 @@ services:
     environment:
       TZ: 'America/New_York'
       WEBPASSWORD: ''
-      PIHOLE_DNS_: 127.0.0.1#5335
+      FTLCONF_dns_upstreams: 127.0.0.1#5335
       DNSMASQ_LISTENING: single
       TEMPERATUREUNIT: f
+      FTLCONF_webserver_api_password: ''
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'

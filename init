@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "[INFO] Starting Unbound..."
+unbound -d -c /etc/unbound/unbound.conf &
+UNBOUND_PID=$!
+
+echo "[INFO] Starting Pi-hole (no-daemon)..."
+/usr/bin/pihole-FTL no-daemon &
+PIHOLE_PID=$!
+
+# Tail Pi-hole logs to Docker stdout
+tail -F /var/log/pihole/pihole.log /var/log/FTL.log &
+
+# Wait for services
+wait $UNBOUND_PID
+wait $LIGHTTPD_PID
+wait $PIHOLE_PID
